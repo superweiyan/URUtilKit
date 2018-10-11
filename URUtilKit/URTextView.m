@@ -8,12 +8,6 @@
 
 #import "URTextView.h"
 
-//#pragma GCC diagnostic ignored "-Wundeclared-selector"
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-#pragma clang diagnostic pop
-
 @implementation URTextView
 
 /*
@@ -26,9 +20,12 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([self.delegate respondsToSelector:@selector(textViewWasTapped)]) {
         [self.delegate performSelector:@selector(textViewWasTapped)];
     }
+    #pragma clang diagnostic pop
     return YES;
 }
 
